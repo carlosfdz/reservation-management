@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->enum('day_of_week', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
             $table->time('lunch_start_time')->nullable();

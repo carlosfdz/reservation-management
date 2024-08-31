@@ -17,6 +17,8 @@ class WorkSchedule extends Model
     protected $fillable = [
         'employee_id',
         'day_of_week',
+        'start_date',
+        'end_date',
         'start_time',
         'end_time',
         'lunch_start_time',
