@@ -22,6 +22,13 @@ class Reservation extends Model
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+    /**
      * Get the employee that owns the reservation.
      */
     public function employee()
