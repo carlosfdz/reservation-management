@@ -1,6 +1,8 @@
 <?php
 
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Exports\EmployeeScheduleReportExport;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,9 @@ Route::prefix('reservations')->group(function () {
 
     Route::get('/employees/availability/check', function () {
         return view('employee-availability-check');
+    });
+
+    Route::get('/employees/export-schedule', function () {
+        return Excel::download(new EmployeeScheduleReportExport, 'employee_schedule_report.xlsx');
     });
 });
