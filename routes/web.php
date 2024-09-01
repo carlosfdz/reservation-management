@@ -2,6 +2,7 @@
 
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 use App\Exports\EmployeeScheduleReportExport;
 
 /*
@@ -16,7 +17,7 @@ use App\Exports\EmployeeScheduleReportExport;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/reservations/employees/availability/interval');
 });
 
 Route::prefix('reservations')->group(function () {
@@ -31,4 +32,8 @@ Route::prefix('reservations')->group(function () {
     Route::get('/employees/export-schedule', function () {
         return Excel::download(new EmployeeScheduleReportExport, 'employee_schedule_report.xlsx');
     });
+
+    Route::get('/employees/send-schedule', [EmployeeController::class, 'showSendScheduleForm'])->name('reservations.employees.schedule');
+
+    Route::post('/employees/send-schedule-email', [EmployeeController::class, 'sendScheduleEmail'])->name('reservations.employees.send_schedule_email');
 });

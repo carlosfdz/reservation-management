@@ -39,10 +39,15 @@
             background-color: #126225;
             border-color: #126225;
         }
-
         .btn-success:hover {
             background-color: #218838;
             border-color: #1e7e34;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -52,8 +57,15 @@
             <a href="{{ url('reservations/employees/availability/interval') }}" class="btn btn-primary {{ request()->is('reservations/employees/availability/interval') ? 'active' : '' }}">Check by Interval</a>
             <a href="{{ url('reservations/employees/availability/check') }}" class="btn btn-primary {{ request()->is('reservations/employees/availability/check') ? 'active' : '' }}">Check by Date & Time</a>
             <a href="{{ url('reservations/employees/export-schedule') }}" class="btn btn-success" id="download-schedule-btn">Download Schedule</a>
+            <a href="{{ route('reservations.employees.schedule') }}" class="btn btn-info {{ request()->is('reservations/employees/send-schedule') ? 'active' : '' }}">Send Schedule Email</a>
         </div>
         @yield('content')
+    </div>
+
+    <div class="footer">
+        <p style="padding-top: 40px;">
+            This application is part of the technical assessment for the Backend Developer position. <br> Name: Carlos Fernandez | Email: fernandez.isc@gmail.com
+        </p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

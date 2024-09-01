@@ -58,4 +58,14 @@ class Employee extends Model
             $query->where('day_of_week', $dayOfWeek);
         });
     }
+
+    /**
+     * Get the full name of the employee.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
