@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Employee Scheduling and Reservation Management
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a Laravel-based web application designed to manage employee work schedules and reservations. The system allows users to define work schedules, handle employee availability, and generate reservations based on available slots within the first week of each month. Additionally, it includes features for generating reports and sending schedule emails. The project comes pre-loaded with information regarding availabilities and reservations through seeders.
 
-## About Laravel
+This project is part of a technical assessment for the Backend Developer position.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Database Setup](#database-setup)
+- [Seeding the Database](#seeding-the-database)
+- [SMTP Configuration](#smtp-configuration)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Production](#production)
+- [Contributing](#contributing)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Prerequisites
 
-## Learning Laravel
+Before you begin, ensure you have the following installed:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **PHP 8.1 or higher**
+- **Composer**
+- **MySQL** or any other database supported by Laravel
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository:**
 
-## Laravel Sponsors
+    ```bash
+    git clone https://github.com/carlosfdz/reservation-management.git
+    cd reservation-management
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install dependencies:**
 
-### Premium Partners
+    ```bash
+    composer install
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Copy the `.env.example` file to `.env` and configure your environment:**
+
+    ```bash
+    cp .env.example .env
+    ```
+
+4. **Generate an application key:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+## Database Setup
+
+1. **Create a database:**
+
+    Create a new database in MySQL or your preferred database system.
+
+2. **Update `.env` with your database details:**
+
+    ```plaintext
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=database_name
+    DB_USERNAME=root
+    DB_PASSWORD=your_password
+    ```
+
+3. **Run migrations:**
+
+    ```bash
+    php artisan migrate
+    ```
+
+## Seeding the Database
+
+This project includes seeders to initialize the database with initial data:
+
+1. **Seed the database:**
+
+    ```bash
+    php artisan db:seed
+    ```
+
+    The seeders will:
+    - Insert 3 sample employees into the database.
+    - Generate work schedules for each employee for the months of September and October 2024.
+    - Create exactly 8 reservations per employee in the first week of each month, based on available work slots.
+
+## SMTP Configuration
+
+To enable email functionalities, configure the SMTP settings in your `.env` file:
+
+1. **Update `.env` with your SMTP details:**
+
+    ```plaintext
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.your-email-provider.com
+    MAIL_PORT=587
+    MAIL_USERNAME=your-email@example.com
+    MAIL_PASSWORD=your-email-password
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=your-email@example.com
+    MAIL_FROM_NAME="${APP_NAME}"
+    ```
+
+    Replace `smtp.your-email-provider.com`, `your-email@example.com`, and `your-email-password` with your SMTP provider's details.
+
+## Usage
+
+1. **Start the application:**
+
+    ```bash
+    php artisan serve
+    ```
+
+2. **Access the application:**
+
+    Open your web browser and go to the URL provided by Laravel after running the `php artisan serve` command (usually [http://localhost:8000](http://localhost:8000)).
+
+## Testing
+
+To verify the system functionalities, you can access the following routes:
+
+- **Check Employee Availability in a Time Interval:**  
+  [http://localhost:8000/reservations/employees/availability/interval](http://localhost:8000/reservations/employees/availability/interval)
+
+- **Check Employee Availability on Specific Date and Time:**  
+  [http://localhost:8000/reservations/employees/availability/check](http://localhost:8000/reservations/employees/availability/check)
+
+- **Generate Downloadable Excel Report:**  
+  [http://localhost:8000/reservations/employees/export-schedule](http://localhost:8000/reservations/employees/export-schedule)
+
+- **Send Daily Schedule Email:**  
+  [http://localhost:8000/reservations/employees/send-schedule](http://localhost:8000/reservations/employees/send-schedule)
+
+These APIs are documented and can be accessed directly via the provided URLs.
+
+Make sure to replace `localhost:8000` with the actual URL if your server is running on a different port or host.
+
+## Production
+
+The application is also deployed in a production environment on DigitalOcean. You can access it via the following IP address:
+
+- **Production URL:** [http://143.198.185.132](http://143.198.185.132)
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Contributions are welcome! If you'd like to contribute, please fork the repository, create a new branch for your feature or bugfix, and submit a pull request.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Contributions are welcome! If you'd like to contribute, please fork the repository, create a new branch for your feature or bugfix, and submit a pull request. Ensure that your code adheres to the project's coding standards.
