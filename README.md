@@ -1,6 +1,6 @@
 # Employee Scheduling and Reservation Management
 
-This project is a Laravel-based web application designed to manage employee work schedules and reservations. The system allows users to define work schedules, handle employee availability, and generate reservations based on available slots within the first week of each month. Additionally, it includes features for generating reports and sending schedule emails. The project comes pre-loaded with information regarding availabilities and reservations through seeders.
+This project is a Laravel 10-based web application designed to manage employee work schedules and reservations. The system allows users to define work schedules, handle employee availability, and generate reservations based on available slots within the first week of each month. Additionally, it includes features for generating reports and sending schedule emails. The project comes pre-loaded with information regarding availabilities and reservations through seeders.
 
 This project is part of a technical assessment for the Backend Developer position.
 
