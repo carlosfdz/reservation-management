@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('reservations')->group(function () {
+    Route::get('/employees/availability/interval', function () {
+        return view('employee-interval-check');
+    });
+
+    Route::get('/employees/availability/check', function () {
+        return view('employee-availability-check');
+    });
+});

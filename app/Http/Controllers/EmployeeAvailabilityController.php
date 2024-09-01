@@ -16,6 +16,29 @@ class EmployeeAvailabilityController extends Controller
     }
 
     /**
+     * Get employees working in a specific time interval.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function checkEmployeesInInterval(Request $request): JsonResponse
+    {
+        $validatedData = $request->validate([
+            'start_date_time' => 'required|date_format:Y-m-d H:i:s',
+            'end_date_time' => 'required|date_format:Y-m-d H:i:s',
+        ]);
+
+        $startDateTime = $validatedData['start_date_time'];
+        $endDateTime = $validatedData['end_date_time'];
+
+        $employees = $this->employeeAvailabilityService->getEmployeesWorkingInInterval($startDateTime, $endDateTime);
+
+        return response()->json([
+            'employees' => $employees,
+        ]);
+    }
+
+    /**
      * Get available employees at a specific date and time.
      *
      * @param Request $request
